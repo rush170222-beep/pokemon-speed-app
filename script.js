@@ -579,18 +579,11 @@ function clearImages(){localStorage.removeItem(KEY);normalImageMap={};$("imageSt
 function rankMul(r){r=Number(r);return r>=0?(2+r)/2:2/(2-r);}
 function calcSpeed(b,pt,n,r,o){let s=Math.floor((Number(b)+20+Number(pt))*Number(n));s=Math.floor(s*rankMul(r));return Math.floor(s*Number(o));}
 function enemySetting(){
-  const mode=$("enemyType").value;
-  const customPt=Number($("enemyAbilityPt").value||0);
-  const customRank=Number($("enemyRank").value||0);
-
-  if(mode==="custom"){
-    return {nature: Number($("enemyNature").value), pt: customPt, rank: customRank};
-  }
-
-  if(mode==="fast") return {nature:1.1, pt:32, rank: customRank};
-  if(mode==="semi") return {nature:1, pt:32, rank: customRank};
-  if(mode==="none") return {nature:1, pt:0, rank: customRank};
-  return {nature:0.9, pt:0, rank: customRank};
+  return {
+    nature: Number($("enemyNature").value),
+    pt: Number($("enemyAbilityPt").value || 0),
+    rank: Number($("enemyRank").value || 0)
+  };
 }
 
 function fillEnemyRank(){
@@ -652,7 +645,7 @@ $("loadImages").addEventListener("click",loadAllImages);
 $("clearImages").addEventListener("click",clearImages);
 if(Object.keys(normalImageMap).length)$("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
 fillRank();fillEnemyRank();fillPokemonSelect();fillEnemyPokemonSelect();
-["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyType","enemyAbilityPt","enemyNature","enemyRank","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
+["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyAbilityPt","enemyNature","enemyRank","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
 
 
 // 初回起動時、通常画像が未取得なら自動で取得する
