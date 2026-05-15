@@ -581,16 +581,31 @@ function calcSpeed(b,pt,n,r,o){let s=Math.floor((Number(b)+20+Number(pt))*Number
 function enemySetting(){
   const mode=$("enemyType").value;
   const customPt=Number($("enemyAbilityPt").value||0);
+  const customRank=Number($("enemyRank").value||0);
 
   if(mode==="custom"){
-    return {nature: Number($("enemyNature").value), pt: customPt};
+    return {nature: Number($("enemyNature").value), pt: customPt, rank: customRank};
   }
 
-  if(mode==="fast") return {nature:1.1, pt:32};
-  if(mode==="semi") return {nature:1, pt:32};
-  if(mode==="none") return {nature:1, pt:0};
-  return {nature:0.9, pt:0};
+  if(mode==="fast") return {nature:1.1, pt:32, rank: customRank};
+  if(mode==="semi") return {nature:1, pt:32, rank: customRank};
+  if(mode==="none") return {nature:1, pt:0, rank: customRank};
+  return {nature:0.9, pt:0, rank: customRank};
 }
+
+function fillEnemyRank(){
+  const select=$("enemyRank");
+  if(!select) return;
+  select.innerHTML="";
+  for(let i=-6;i<=6;i++){
+    const op=document.createElement("option");
+    op.value=i;
+    op.textContent=i>0?"+"+i:String(i);
+    if(i===0) op.selected=true;
+    select.appendChild(op);
+  }
+}
+
 function fillRank(){for(let i=-6;i<=6;i++){const op=document.createElement("option");op.value=i;op.textContent=i>0?"+"+i:String(i);if(i===0)op.selected=true;$("rank").appendChild(op);}}
 
 function fillEnemyPokemonSelect(){
@@ -627,17 +642,17 @@ const enemyFinal=calcSpeed(
   selectedEnemy.speed,
   e.pt,
   e.nature,
-  0,
+  e.rank || 0,
   $("enemyOther").value
 );
 $("enemyFinalSpeed").textContent=enemyFinal;
 
-const kw=normalizeName($("listSearch").value);let w=0,same=0,l=0;const rows=POKEMON_DATA.filter(p=>!kw||normalizeName(p.name).includes(kw)).map(p=>{const es=calcSpeed(p.speed,e.pt,e.nature,0,$("enemyOther").value),diff=my-es;let j="抜かれる",c="lose";if(diff>0){j="抜ける";c="win";w++;}else if(diff===0){j="同速";c="same";same++;}else l++;return{...p,enemySpeed:es,diff,j,c};}).sort((a,b)=>b.enemySpeed-a.enemySpeed);$("winCount").textContent=w;$("sameCount").textContent=same;$("loseCount").textContent=l;$("resultList").innerHTML=rows.map(p=>`<div class="row">${imageHtml(p.name)}<div><div class="name">${p.name}</div><div class="sub">種族値S ${p.speed} / 相手S ${p.enemySpeed} / 差 ${p.diff}</div></div><div class="badge ${p.c}">${p.j}</div></div>`).join("");}
+const kw=normalizeName($("listSearch").value);let w=0,same=0,l=0;const rows=POKEMON_DATA.filter(p=>!kw||normalizeName(p.name).includes(kw)).map(p=>{const es=calcSpeed(p.speed,e.pt,e.nature,e.rank||0,$("enemyOther").value),diff=my-es;let j="抜かれる",c="lose";if(diff>0){j="抜ける";c="win";w++;}else if(diff===0){j="同速";c="same";same++;}else l++;return{...p,enemySpeed:es,diff,j,c};}).sort((a,b)=>b.enemySpeed-a.enemySpeed);$("winCount").textContent=w;$("sameCount").textContent=same;$("loseCount").textContent=l;$("resultList").innerHTML=rows.map(p=>`<div class="row">${imageHtml(p.name)}<div><div class="name">${p.name}</div><div class="sub">種族値S ${p.speed} / 相手S ${p.enemySpeed} / 差 ${p.diff}</div></div><div class="badge ${p.c}">${p.j}</div></div>`).join("");}
 $("loadImages").addEventListener("click",loadAllImages);
 $("clearImages").addEventListener("click",clearImages);
 if(Object.keys(normalImageMap).length)$("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
-fillRank();fillPokemonSelect();fillEnemyPokemonSelect();
-["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyType","enemyAbilityPt","enemyNature","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
+fillRank();fillEnemyRank();fillPokemonSelect();fillEnemyPokemonSelect();
+["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyType","enemyAbilityPt","enemyNature","enemyRank","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
 
 
 // 初回起動時、通常画像が未取得なら自動で取得する
