@@ -1,0 +1,73 @@
+<!doctype html><html lang="ja"><head>
+
+<!-- Google AdSense -->
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+crossorigin="anonymous"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポケモンチャンピオンズ 素早さ比較</title><link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f8b8d"></head><body><main class="app">
+<header><h1>素早さ比較</h1><p>完全修正版：メガ固定＋♀フォルム対応</p></header>
+<section class="card notice"><b>画像</b><p>メガ画像・特殊フォルム画像は固定済みです。通常画像も欲しい場合だけ「通常画像を自動取得」を押してください。</p>
+<button id="loadImages">通常画像を自動取得</button><button id="clearImages">通常画像キャッシュ削除</button><span id="imageStatus">特殊画像は設定済み</span></section>
+<section class="card"><h2>自分のポケモン</h2><label>ポケモン検索<input id="mySearch" placeholder="例：ニャオニクス"></label><label>ポケモン<select id="myPokemon"></select></label>
+<div class="preview"><div class="img-wrap"><img id="myImage" alt=""></div><div><div id="myName" class="poke-name"></div><div>種族値S：<b id="myBaseText"></b></div></div></div>
+<div class="grid"><label>素早さ種族値<input id="baseSpeed" type="number" min="1" max="300"></label><label>能力pt<input id="abilityPt" type="number" min="0" max="32" value="32"></label>
+<label>性格<select id="nature"><option value="1.1">上昇補正</option><option value="1" selected>補正なし</option><option value="0.9">下降補正</option></select></label><label>ランク<select id="rank"></select></label>
+<label>その他補正<select id="other"><option value="1">なし</option><option value="1.5">こだわりスカーフ等 ×1.5</option><option value="2">追い風・すいすい等 ×2</option><option value="0.5">麻痺等 ×0.5</option></select></label></div>
+<div class="speed-box"><span>最終素早さ</span><strong id="mySpeed">0</strong></div></section>
+<section class="card"><h2>相手条件</h2><div class="grid"><label>相手の型<select id="enemyType">
+<option value="fast">最速：上昇補正・32pt</option>
+<option value="semi">準速：補正なし・32pt</option>
+<option value="none">無振り：補正なし・0pt</option>
+<option value="slow">最遅：下降補正・0pt</option>
+<option value="custom">カスタム</option>
+</select></label>
+
+<label>相手能力pt
+<input id="enemyAbilityPt" type="number" min="0" max="32" value="32">
+</label>
+
+<label>相手性格
+<select id="enemyNature">
+<option value="1.1">上昇補正</option>
+<option value="1" selected>補正なし</option>
+<option value="0.9">下降補正</option>
+</select>
+</label>
+
+<label>相手の補正<select id="enemyOther"><option value="1">なし</option><option value="1.5">×1.5</option><option value="2">×2</option><option value="0.5">×0.5</option></select></label><label>相手ポケモン検索<input id="enemySearch" placeholder="例：メガゲンガー"></label>
+
+<label>相手ポケモン
+<select id="enemyPokemon"></select>
+</label>
+
+<label>一覧検索<input id="listSearch" placeholder="例：メガ"></label>
+
+<div class="speed-box">
+<span>相手の最終素早さ</span>
+<strong id="enemyFinalSpeed">0</strong>
+</div></div></section>
+<section class="card"><h2>比較結果</h2><div class="summary"><div><b id="winCount">0</b><span>抜ける</span></div><div><b id="sameCount">0</b><span>同速</span></div><div><b id="loseCount">0</b><span>抜かれる</span></div></div><div id="resultList" class="result-list"></div></section>
+
+<section class="card">
+<h2>スポンサー</h2>
+<div style="min-height:120px;background:#f1f5f9;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:bold;">
+広告エリア（AdSense）
+</div>
+</section>
+
+<footer style="text-align:center;padding:20px;color:#666;">
+<p><a href="terms.html">利用規約</a> ｜ <a href="privacy.html">プライバシーポリシー</a></p>
+<p>このアプリは非公式のファンツールです。</p>
+</footer>
+</main><script src="pokemon_data.js"></script><script src="script.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}
+</script>
+</body></html>
