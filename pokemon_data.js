@@ -12,19 +12,19 @@ const POKEMON_DATA = [
     "speed": 145
   },
   {
-    "name": "メガゲッコウガ",
-    "speed": 142
-  },
-  {
     "name": "ドラパルト",
     "speed": 142
   },
   {
-    "name": "メガライボルト",
-    "speed": 135
+    "name": "メガゲッコウガ",
+    "speed": 142
   },
   {
     "name": "メガミミロップ",
+    "speed": 135
+  },
+  {
+    "name": "メガライボルト",
     "speed": 135
   },
   {
@@ -32,8 +32,8 @@ const POKEMON_DATA = [
     "speed": 134
   },
   {
-    "name": "メガゲンガー",
-    "speed": 130
+    "name": "メガケケンカニ",
+    "speed": 132
   },
   {
     "name": "サンダース",
@@ -41,6 +41,10 @@ const POKEMON_DATA = [
   },
   {
     "name": "プテラ",
+    "speed": 130
+  },
+  {
+    "name": "メガゲンガー",
     "speed": 130
   },
   {
@@ -72,6 +76,10 @@ const POKEMON_DATA = [
     "speed": 121
   },
   {
+    "name": "オオニューラ",
+    "speed": 120
+  },
+  {
     "name": "フーディン",
     "speed": 120
   },
@@ -84,15 +92,11 @@ const POKEMON_DATA = [
     "speed": 120
   },
   {
-    "name": "オオニューラ",
-    "speed": 120
-  },
-  {
-    "name": "ルチャブル",
+    "name": "メガルチャブル",
     "speed": 118
   },
   {
-    "name": "メガルチャブル",
+    "name": "ルチャブル",
     "speed": 118
   },
   {
@@ -108,11 +112,11 @@ const POKEMON_DATA = [
     "speed": 115
   },
   {
-    "name": "メガヘルガー",
+    "name": "メガアブソル",
     "speed": 115
   },
   {
-    "name": "メガアブソル",
+    "name": "メガヘルガー",
     "speed": 115
   },
   {
@@ -132,15 +136,11 @@ const POKEMON_DATA = [
     "speed": 111
   },
   {
-    "name": "ライチュウ",
-    "speed": 110
-  },
-  {
     "name": "アローラライチュウ",
     "speed": 110
   },
   {
-    "name": "ゲンガー",
+    "name": "エーフィ",
     "speed": 110
   },
   {
@@ -148,7 +148,11 @@ const POKEMON_DATA = [
     "speed": 110
   },
   {
-    "name": "エーフィ",
+    "name": "ゲンガー",
+    "speed": 110
+  },
+  {
+    "name": "ヒスイゾロアーク",
     "speed": 110
   },
   {
@@ -164,7 +168,7 @@ const POKEMON_DATA = [
     "speed": 110
   },
   {
-    "name": "ヒスイゾロアーク",
+    "name": "ライチュウ",
     "speed": 110
   },
   {
@@ -188,19 +192,7 @@ const POKEMON_DATA = [
     "speed": 106
   },
   {
-    "name": "メガカイロス",
-    "speed": 105
-  },
-  {
-    "name": "ライボルト",
-    "speed": 105
-  },
-  {
-    "name": "メガサメハダー",
-    "speed": 105
-  },
-  {
-    "name": "ミミロップ",
+    "name": "クエスパトラ",
     "speed": 105
   },
   {
@@ -208,11 +200,23 @@ const POKEMON_DATA = [
     "speed": 105
   },
   {
-    "name": "クエスパトラ",
+    "name": "ミミロップ",
     "speed": 105
   },
   {
-    "name": "マフォクシー",
+    "name": "メガカイロス",
+    "speed": 105
+  },
+  {
+    "name": "メガサメハダー",
+    "speed": 105
+  },
+  {
+    "name": "ライボルト",
+    "speed": 105
+  },
+  {
+    "name": "ニャオニクス♀",
     "speed": 104
   },
   {
@@ -220,15 +224,15 @@ const POKEMON_DATA = [
     "speed": 104
   },
   {
-    "name": "ニャオニクス♀",
+    "name": "マフォクシー",
     "speed": 104
   },
   {
-    "name": "メガドリュウズ",
+    "name": "エモンガ",
     "speed": 103
   },
   {
-    "name": "エモンガ",
+    "name": "メガドリュウズ",
     "speed": 103
   },
   {
@@ -236,19 +240,15 @@ const POKEMON_DATA = [
     "speed": 102
   },
   {
-    "name": "メガフラエッテ",
-    "speed": 102
-  },
-  {
     "name": "トリミアン",
     "speed": 102
   },
   {
-    "name": "ピジョット",
-    "speed": 101
+    "name": "メガフラエッテ",
+    "speed": 102
   },
   {
-    "name": "ヤナッキー",
+    "name": "デデンネ",
     "speed": 101
   },
   {
@@ -260,7 +260,7 @@ const POKEMON_DATA = [
     "speed": 101
   },
   {
-    "name": "デデンネ",
+    "name": "ピジョット",
     "speed": 101
   },
   {
@@ -268,15 +268,19 @@ const POKEMON_DATA = [
     "speed": 101
   },
   {
-    "name": "リザードン",
+    "name": "ヤナッキー",
+    "speed": 101
+  },
+  {
+    "name": "イルカマン(ナイーブフォルム)",
     "speed": 100
   },
   {
-    "name": "メガリザードンX",
+    "name": "イルカマン(マイティフォルム)",
     "speed": 100
   },
   {
-    "name": "メガリザードンY",
+    "name": "ウルガモス",
     "speed": 100
   },
   {
@@ -284,7 +288,7 @@ const POKEMON_DATA = [
     "speed": 100
   },
   {
-    "name": "メガガルーラ",
+    "name": "バクフーン",
     "speed": 100
   },
   {
@@ -292,11 +296,15 @@ const POKEMON_DATA = [
     "speed": 100
   },
   {
+    "name": "パルデアケンタロス(水)",
+    "speed": 100
+  },
+  {
     "name": "パルデアケンタロス(炎)",
     "speed": 100
   },
   {
-    "name": "パルデアケンタロス(水)",
+    "name": "メガオニゴーリ",
     "speed": 100
   },
   {
@@ -304,7 +312,7 @@ const POKEMON_DATA = [
     "speed": 100
   },
   {
-    "name": "バクフーン",
+    "name": "メガガルーラ",
     "speed": 100
   },
   {
@@ -316,19 +324,15 @@ const POKEMON_DATA = [
     "speed": 100
   },
   {
-    "name": "メガオニゴーリ",
+    "name": "メガリザードンX",
     "speed": 100
   },
   {
-    "name": "ウルガモス",
+    "name": "メガリザードンY",
     "speed": 100
   },
   {
-    "name": "イルカマン(ナイーブフォルム)",
-    "speed": 100
-  },
-  {
-    "name": "イルカマン(マイティフォルム)",
+    "name": "リザードン",
     "speed": 100
   },
   {
@@ -352,6 +356,14 @@ const POKEMON_DATA = [
     "speed": 95
   },
   {
+    "name": "グライオン",
+    "speed": 95
+  },
+  {
+    "name": "サメハダー",
+    "speed": 95
+  },
+  {
     "name": "ヒスイバクフーン",
     "speed": 95
   },
@@ -360,20 +372,16 @@ const POKEMON_DATA = [
     "speed": 95
   },
   {
-    "name": "サメハダー",
-    "speed": 95
-  },
-  {
     "name": "リーフィア",
-    "speed": 95
-  },
-  {
-    "name": "グライオン",
     "speed": 95
   },
   {
     "name": "デカヌチャン",
     "speed": 94
+  },
+  {
+    "name": "フラエッテ(えいえんのはな)",
+    "speed": 92
   },
   {
     "name": "メガガブリアス",
@@ -384,15 +392,11 @@ const POKEMON_DATA = [
     "speed": 92
   },
   {
-    "name": "フラエッテ(えいえんのはな)",
-    "speed": 92
-  },
-  {
     "name": "ロトム",
     "speed": 91
   },
   {
-    "name": "ピカチュウ",
+    "name": "ガルーラ",
     "speed": 90
   },
   {
@@ -400,11 +404,11 @@ const POKEMON_DATA = [
     "speed": 90
   },
   {
-    "name": "ガルーラ",
+    "name": "ピカチュウ",
     "speed": 90
   },
   {
-    "name": "ロズレイド",
+    "name": "メガシャンデラ",
     "speed": 90
   },
   {
@@ -412,7 +416,7 @@ const POKEMON_DATA = [
     "speed": 90
   },
   {
-    "name": "メガシャンデラ",
+    "name": "ロズレイド",
     "speed": 90
   },
   {
@@ -424,19 +428,7 @@ const POKEMON_DATA = [
     "speed": 88
   },
   {
-    "name": "ヒートロトム",
-    "speed": 86
-  },
-  {
     "name": "ウォッシュロトム",
-    "speed": 86
-  },
-  {
-    "name": "フロストロトム",
-    "speed": 86
-  },
-  {
-    "name": "スピンロトム",
     "speed": 86
   },
   {
@@ -448,19 +440,23 @@ const POKEMON_DATA = [
     "speed": 86
   },
   {
+    "name": "スピンロトム",
+    "speed": 86
+  },
+  {
+    "name": "ヒートロトム",
+    "speed": 86
+  },
+  {
+    "name": "フロストロトム",
+    "speed": 86
+  },
+  {
+    "name": "ウェーニバル",
+    "speed": 85
+  },
+  {
     "name": "カイロス",
-    "speed": 85
-  },
-  {
-    "name": "ヘラクロス",
-    "speed": 85
-  },
-  {
-    "name": "ドクロッグ",
-    "speed": 85
-  },
-  {
-    "name": "ヒスイダイケンキ",
     "speed": 85
   },
   {
@@ -468,19 +464,27 @@ const POKEMON_DATA = [
     "speed": 85
   },
   {
-    "name": "バサギリ",
-    "speed": 85
-  },
-  {
-    "name": "ウェーニバル",
-    "speed": 85
-  },
-  {
     "name": "ソウブレイズ",
     "speed": 85
   },
   {
+    "name": "ドクロッグ",
+    "speed": 85
+  },
+  {
+    "name": "バサギリ",
+    "speed": 85
+  },
+  {
+    "name": "ヒスイダイケンキ",
+    "speed": 85
+  },
+  {
     "name": "ブリジュラス",
+    "speed": 85
+  },
+  {
+    "name": "ヘラクロス",
     "speed": 85
   },
   {
@@ -496,23 +500,23 @@ const POKEMON_DATA = [
     "speed": 81
   },
   {
-    "name": "メガギャラドス",
-    "speed": 81
-  },
-  {
     "name": "ミロカロス",
     "speed": 81
   },
   {
-    "name": "フシギバナ",
-    "speed": 80
-  },
-  {
-    "name": "メガフシギバナ",
-    "speed": 80
+    "name": "メガギャラドス",
+    "speed": 81
   },
   {
     "name": "アーボック",
+    "speed": 80
+  },
+  {
+    "name": "エルレイド",
+    "speed": 80
+  },
+  {
+    "name": "オニゴーリ",
     "speed": 80
   },
   {
@@ -520,15 +524,11 @@ const POKEMON_DATA = [
     "speed": 80
   },
   {
-    "name": "メガニウム",
-    "speed": 80
-  },
-  {
-    "name": "メガメガニウム",
-    "speed": 80
-  },
-  {
     "name": "サーナイト",
+    "speed": 80
+  },
+  {
+    "name": "シャンデラ",
     "speed": 80
   },
   {
@@ -540,23 +540,7 @@ const POKEMON_DATA = [
     "speed": 80
   },
   {
-    "name": "メガチルタリス",
-    "speed": 80
-  },
-  {
-    "name": "オニゴーリ",
-    "speed": 80
-  },
-  {
-    "name": "マンムー",
-    "speed": 80
-  },
-  {
-    "name": "エルレイド",
-    "speed": 80
-  },
-  {
-    "name": "シャンデラ",
+    "name": "ナゲツケサル",
     "speed": 80
   },
   {
@@ -564,7 +548,27 @@ const POKEMON_DATA = [
     "speed": 80
   },
   {
-    "name": "ナゲツケサル",
+    "name": "フシギバナ",
+    "speed": 80
+  },
+  {
+    "name": "マンムー",
+    "speed": 80
+  },
+  {
+    "name": "メガチルタリス",
+    "speed": 80
+  },
+  {
+    "name": "メガニウム",
+    "speed": 80
+  },
+  {
+    "name": "メガフシギバナ",
+    "speed": 80
+  },
+  {
+    "name": "メガメガニウム",
     "speed": 80
   },
   {
@@ -572,23 +576,7 @@ const POKEMON_DATA = [
     "speed": 79
   },
   {
-    "name": "カメックス",
-    "speed": 78
-  },
-  {
-    "name": "メガカメックス",
-    "speed": 78
-  },
-  {
-    "name": "オーダイル",
-    "speed": 78
-  },
-  {
-    "name": "メガオーダイル",
-    "speed": 78
-  },
-  {
-    "name": "ホルード",
+    "name": "イダイトウ♀",
     "speed": 78
   },
   {
@@ -596,7 +584,23 @@ const POKEMON_DATA = [
     "speed": 78
   },
   {
-    "name": "イダイトウ♀",
+    "name": "オーダイル",
+    "speed": 78
+  },
+  {
+    "name": "カメックス",
+    "speed": 78
+  },
+  {
+    "name": "ホルード",
+    "speed": 78
+  },
+  {
+    "name": "メガオーダイル",
+    "speed": 78
+  },
+  {
+    "name": "メガカメックス",
     "speed": 78
   },
   {
@@ -604,35 +608,7 @@ const POKEMON_DATA = [
     "speed": 77
   },
   {
-    "name": "スピアー",
-    "speed": 75
-  },
-  {
-    "name": "メガハッサム",
-    "speed": 75
-  },
-  {
-    "name": "メガヘラクロス",
-    "speed": 75
-  },
-  {
-    "name": "メガジュペッタ",
-    "speed": 75
-  },
-  {
     "name": "アブソル",
-    "speed": 75
-  },
-  {
-    "name": "メガエンブオー",
-    "speed": 75
-  },
-  {
-    "name": "ダストダス",
-    "speed": 75
-  },
-  {
-    "name": "フラージェス",
     "speed": 75
   },
   {
@@ -648,20 +624,44 @@ const POKEMON_DATA = [
     "speed": 75
   },
   {
+    "name": "スピアー",
+    "speed": 75
+  },
+  {
+    "name": "ダストダス",
+    "speed": 75
+  },
+  {
+    "name": "フラージェス",
+    "speed": 75
+  },
+  {
+    "name": "メガエンブオー",
+    "speed": 75
+  },
+  {
+    "name": "メガジュペッタ",
+    "speed": 75
+  },
+  {
     "name": "メガスコヴィラン",
     "speed": 75
   },
   {
-    "name": "ペロリーム",
-    "speed": 72
+    "name": "メガハッサム",
+    "speed": 75
+  },
+  {
+    "name": "メガヘラクロス",
+    "speed": 75
   },
   {
     "name": "アマージョ",
     "speed": 72
   },
   {
-    "name": "メガバンギラス",
-    "speed": 71
+    "name": "ペロリーム",
+    "speed": 72
   },
   {
     "name": "ガチゴラス",
@@ -672,7 +672,11 @@ const POKEMON_DATA = [
     "speed": 71
   },
   {
-    "name": "メガピクシー",
+    "name": "メガバンギラス",
+    "speed": 71
+  },
+  {
+    "name": "アップリュー",
     "speed": 70
   },
   {
@@ -680,27 +684,7 @@ const POKEMON_DATA = [
     "speed": 70
   },
   {
-    "name": "メガウツボット",
-    "speed": 70
-  },
-  {
-    "name": "ニョロトノ",
-    "speed": 70
-  },
-  {
     "name": "エアームド",
-    "speed": 70
-  },
-  {
-    "name": "ポワルン",
-    "speed": 70
-  },
-  {
-    "name": "レントラー",
-    "speed": 70
-  },
-  {
-    "name": "ダイケンキ",
     "speed": 70
   },
   {
@@ -708,11 +692,11 @@ const POKEMON_DATA = [
     "speed": 70
   },
   {
-    "name": "アップリュー",
+    "name": "ダイケンキ",
     "speed": 70
   },
   {
-    "name": "ポットデス",
+    "name": "ニョロトノ",
     "speed": 70
   },
   {
@@ -720,7 +704,27 @@ const POKEMON_DATA = [
     "speed": 70
   },
   {
+    "name": "ポットデス",
+    "speed": 70
+  },
+  {
+    "name": "ポワルン",
+    "speed": 70
+  },
+  {
+    "name": "メガウツボット",
+    "speed": 70
+  },
+  {
+    "name": "メガピクシー",
+    "speed": 70
+  },
+  {
     "name": "ヤバソチャ",
+    "speed": 70
+  },
+  {
+    "name": "レントラー",
     "speed": 70
   },
   {
@@ -736,23 +740,19 @@ const POKEMON_DATA = [
     "speed": 66
   },
   {
+    "name": "アヤシシ",
+    "speed": 65
+  },
+  {
+    "name": "エンブオー",
+    "speed": 65
+  },
+  {
+    "name": "グレイシア",
+    "speed": 65
+  },
+  {
     "name": "シャワーズ",
-    "speed": 65
-  },
-  {
-    "name": "ブースター",
-    "speed": 65
-  },
-  {
-    "name": "ブラッキー",
-    "speed": 65
-  },
-  {
-    "name": "ハッサム",
-    "speed": 65
-  },
-  {
-    "name": "ペリッパー",
     "speed": 65
   },
   {
@@ -764,23 +764,27 @@ const POKEMON_DATA = [
     "speed": 65
   },
   {
-    "name": "メガチリーン",
+    "name": "ハッサム",
     "speed": 65
   },
   {
-    "name": "グレイシア",
+    "name": "ブラッキー",
     "speed": 65
   },
   {
-    "name": "エンブオー",
+    "name": "ブースター",
     "speed": 65
   },
   {
-    "name": "アヤシシ",
+    "name": "ペリッパー",
     "speed": 65
   },
   {
     "name": "ミミズズ",
+    "speed": 65
+  },
+  {
+    "name": "メガチリーン",
     "speed": 65
   },
   {
@@ -796,7 +800,7 @@ const POKEMON_DATA = [
     "speed": 61
   },
   {
-    "name": "ピクシー",
+    "name": "アシレーヌ",
     "speed": 60
   },
   {
@@ -804,7 +808,7 @@ const POKEMON_DATA = [
     "speed": 60
   },
   {
-    "name": "ユキノオー",
+    "name": "ガオガエン",
     "speed": 60
   },
   {
@@ -812,11 +816,11 @@ const POKEMON_DATA = [
     "speed": 60
   },
   {
-    "name": "ニンフィア",
+    "name": "ドデカバシ",
     "speed": 60
   },
   {
-    "name": "ヒスイヌメルゴン",
+    "name": "ニンフィア",
     "speed": 60
   },
   {
@@ -824,19 +828,19 @@ const POKEMON_DATA = [
     "speed": 60
   },
   {
-    "name": "ガオガエン",
+    "name": "ヒスイヌメルゴン",
     "speed": 60
   },
   {
-    "name": "アシレーヌ",
-    "speed": 60
-  },
-  {
-    "name": "ドデカバシ",
+    "name": "ピクシー",
     "speed": 60
   },
   {
     "name": "ヤレユータン",
+    "speed": 60
+  },
+  {
+    "name": "ユキノオー",
     "speed": 60
   },
   {
@@ -848,7 +852,7 @@ const POKEMON_DATA = [
     "speed": 59
   },
   {
-    "name": "ラムパルド",
+    "name": "アマルルガ",
     "speed": 58
   },
   {
@@ -856,15 +860,15 @@ const POKEMON_DATA = [
     "speed": 58
   },
   {
-    "name": "アマルルガ",
+    "name": "ラムパルド",
     "speed": 58
   },
   {
-    "name": "ドダイトス",
+    "name": "オーロット",
     "speed": 56
   },
   {
-    "name": "オーロット",
+    "name": "ドダイトス",
     "speed": 56
   },
   {
@@ -872,11 +876,11 @@ const POKEMON_DATA = [
     "speed": 55
   },
   {
-    "name": "デンリュウ",
+    "name": "ゴルーグ",
     "speed": 55
   },
   {
-    "name": "ゴルーグ",
+    "name": "デンリュウ",
     "speed": 55
   },
   {
@@ -888,27 +892,7 @@ const POKEMON_DATA = [
     "speed": 54
   },
   {
-    "name": "マリルリ",
-    "speed": 50
-  },
-  {
-    "name": "ヤミラミ",
-    "speed": 50
-  },
-  {
-    "name": "ボスゴドラ",
-    "speed": 50
-  },
-  {
-    "name": "メガボスゴドラ",
-    "speed": 50
-  },
-  {
     "name": "タブンネ",
-    "speed": 50
-  },
-  {
-    "name": "メガタブンネ",
     "speed": 50
   },
   {
@@ -920,12 +904,36 @@ const POKEMON_DATA = [
     "speed": 50
   },
   {
+    "name": "ボスゴドラ",
+    "speed": 50
+  },
+  {
+    "name": "マリルリ",
+    "speed": 50
+  },
+  {
+    "name": "メガタブンネ",
+    "speed": 50
+  },
+  {
+    "name": "メガボスゴドラ",
+    "speed": 50
+  },
+  {
+    "name": "ヤミラミ",
+    "speed": 50
+  },
+  {
     "name": "メタモン",
     "speed": 48
   },
   {
     "name": "カバルドン",
     "speed": 47
+  },
+  {
+    "name": "ハラバリー",
+    "speed": 45
   },
   {
     "name": "メガデンリュウ",
@@ -936,15 +944,11 @@ const POKEMON_DATA = [
     "speed": 45
   },
   {
-    "name": "ハラバリー",
-    "speed": 45
-  },
-  {
-    "name": "メガブリガロン",
+    "name": "カミツオロチ",
     "speed": 44
   },
   {
-    "name": "カミツオロチ",
+    "name": "メガブリガロン",
     "speed": 44
   },
   {
@@ -960,7 +964,7 @@ const POKEMON_DATA = [
     "speed": 40
   },
   {
-    "name": "フォレトス",
+    "name": "ドサイドン",
     "speed": 40
   },
   {
@@ -968,7 +972,7 @@ const POKEMON_DATA = [
     "speed": 40
   },
   {
-    "name": "ドサイドン",
+    "name": "フォレトス",
     "speed": 40
   },
   {
@@ -984,7 +988,7 @@ const POKEMON_DATA = [
     "speed": 36
   },
   {
-    "name": "ミカルゲ",
+    "name": "キョジオーン",
     "speed": 35
   },
   {
@@ -996,19 +1000,23 @@ const POKEMON_DATA = [
     "speed": 35
   },
   {
-    "name": "キョジオーン",
+    "name": "ミカルゲ",
     "speed": 35
-  },
-  {
-    "name": "マッギョ",
-    "speed": 32
   },
   {
     "name": "ガラルマッギョ",
     "speed": 32
   },
   {
-    "name": "ヤドラン",
+    "name": "マッギョ",
+    "speed": 32
+  },
+  {
+    "name": "カビゴン",
+    "speed": 30
+  },
+  {
+    "name": "ガラルヤドキング",
     "speed": 30
   },
   {
@@ -1016,19 +1024,19 @@ const POKEMON_DATA = [
     "speed": 30
   },
   {
-    "name": "メガヤドラン",
+    "name": "タルップル",
     "speed": 30
   },
   {
-    "name": "カビゴン",
+    "name": "デスカーン",
     "speed": 30
   },
   {
-    "name": "ヤドキング",
+    "name": "デスバーン",
     "speed": 30
   },
   {
-    "name": "ガラルヤドキング",
+    "name": "トリデプス",
     "speed": 30
   },
   {
@@ -1040,7 +1048,7 @@ const POKEMON_DATA = [
     "speed": 30
   },
   {
-    "name": "トリデプス",
+    "name": "メガヤドラン",
     "speed": 30
   },
   {
@@ -1048,19 +1056,15 @@ const POKEMON_DATA = [
     "speed": 30
   },
   {
-    "name": "デスカーン",
+    "name": "ヤドキング",
+    "speed": 30
+  },
+  {
+    "name": "ヤドラン",
     "speed": 30
   },
   {
     "name": "ランクルス",
-    "speed": 30
-  },
-  {
-    "name": "タルップル",
-    "speed": 30
-  },
-  {
-    "name": "デスバーン",
     "speed": 30
   },
   {
@@ -1076,7 +1080,7 @@ const POKEMON_DATA = [
     "speed": 28
   },
   {
-    "name": "メガヤミラミ",
+    "name": "コータス",
     "speed": 20
   },
   {
@@ -1084,9 +1088,7 @@ const POKEMON_DATA = [
     "speed": 20
   },
   {
-    "name": "コータス",
+    "name": "メガヤミラミ",
     "speed": 20
   }
 ];
-
-["メガケケンカニ",132],

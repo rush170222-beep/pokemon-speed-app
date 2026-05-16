@@ -463,12 +463,21 @@ const SPECIAL_IMAGE_CANDIDATES={
 };
 let normalImageMap=JSON.parse(localStorage.getItem(KEY)||"{}");
 
+if (typeof SPECIAL_IMAGE_CANDIDATES !== "undefined") {
+  SPECIAL_IMAGE_CANDIDATES["メガケケンカニ"] = [
+    "https://archives.bulbagarden.net/wiki/Special:FilePath/Menu%20CP%200740-Mega.png",
+    "https://play.pokemonshowdown.com/sprites/gen5/crabominable.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/740.png"
+  ];
+}
+
+
 // メガニャオニクス画像修正：画像が存在しない場合は通常ニャオニクス画像へフォールバック
 if (typeof SPECIAL_IMAGE_CANDIDATES !== "undefined") {
   SPECIAL_IMAGE_CANDIDATES["メガニャオニクス"] = [
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678-f.png",
   "https://play.pokemonshowdown.com/sprites/gen5/meowstic-f.png",
-  "https://img.pokemondb.net/sprites/home/normal/2x/meowstic-female.jpg"
+  "https://img.pokemondb.net/sprites/home/normal/2x/meowstic-female.jpg",
+  "https://archives.bulbagarden.net/wiki/Special:FilePath/Menu%20HOME%200678-F.png"
 ];
 }
 
@@ -487,6 +496,15 @@ const NORMALIZED_SPECIAL={};
 Object.keys(SPECIAL_IMAGE_CANDIDATES).forEach(k=>{
   NORMALIZED_SPECIAL[normalizeName(k)] = SPECIAL_IMAGE_CANDIDATES[k];
 });
+
+
+function hiraToKata(str){
+  return String(str).replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
+}
+
+function searchKey(str){
+  return normalizeName(hiraToKata(str));
+}
 
 function baseName(n){
   return normalizeName(n)
@@ -547,7 +565,7 @@ function setMainImage(name){
 }
 
 async function loadAllImages(){
-  if ($("imageStatus")) $("imageStatus").textContent="通常画像を取得中...";
+  if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent="通常画像を取得中...";
   try{
     const list=await fetch("https://pokeapi.co/api/v2/pokemon-species?limit=1200").then(r=>r.json());
     const jaToId={};
@@ -558,7 +576,7 @@ async function loadAllImages(){
         const ja=d.names.find(x=>x.language.name==="ja-Hrkt"||x.language.name==="ja");
         if(ja) jaToId[normalizeName(ja.name)]=d.id;
       }));
-      if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得中... ${Math.min(i+30,list.results.length)} / ${list.results.length}`;
+      if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得中... ${Math.min(i+30,list.results.length)} / ${list.results.length}`;
     }
     const m={};
     POKEMON_DATA.forEach(p=>{
@@ -569,12 +587,12 @@ async function loadAllImages(){
       if(id) m[n]=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     });
     normalImageMap=m; localStorage.setItem(KEY,JSON.stringify(m));
-    if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得完了：${Object.keys(m).length}件 / 特殊画像設定済み`;
+    if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得完了：${Object.keys(m).length}件 / 特殊画像設定済み`;
     updateSelectedPokemon(); render();
-  }catch(e){console.error(e);if ($("imageStatus")) $("imageStatus").textContent="取得失敗";alert("通常画像取得に失敗しました。");}
+  }catch(e){console.error(e);if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent="取得失敗";alert("通常画像取得に失敗しました。");}
 }
 
-function clearImages(){localStorage.removeItem(KEY);normalImageMap={};if ($("imageStatus")) $("imageStatus").textContent="通常画像キャッシュ削除済み / 特殊画像は残ります";updateSelectedPokemon();render();}
+function clearImages(){localStorage.removeItem(KEY);normalImageMap={};if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent="通常画像キャッシュ削除済み / 特殊画像は残ります";updateSelectedPokemon();render();}
 function rankMul(r){r=Number(r);return r>=0?(2+r)/2:2/(2-r);}
 function calcSpeed(b,pt,n,r,o){let s=Math.floor((Number(b)+20+Number(pt))*Number(n));s=Math.floor(s*rankMul(r));return Math.floor(s*Number(o));}
 function enemySetting(){
@@ -601,12 +619,12 @@ function fillEnemyRank(){
 function fillRank(){for(let i=-6;i<=6;i++){const op=document.createElement("option");op.value=i;op.textContent=i>0?"+"+i:String(i);if(i===0)op.selected=true;$("rank").appendChild(op);}}
 
 function fillEnemyPokemonSelect(){
-  const kw=normalizeName($("enemySearch").value);
+  const kw=searchKey($("enemySearch").value);
   const now=$("enemyPokemon").value;
   $("enemyPokemon").innerHTML="";
 
   POKEMON_DATA
-    .filter(p=>!kw||normalizeName(p.name).includes(kw))
+    .filter(p=>!kw||searchKey(p.name).includes(kw))
     .forEach(p=>{
       const op=document.createElement("option");
       op.value=p.name;
@@ -621,7 +639,7 @@ function fillEnemyPokemonSelect(){
   render();
 }
 
-function fillPokemonSelect(){const kw=normalizeName($("mySearch").value);const now=$("myPokemon").value;$("myPokemon").innerHTML="";POKEMON_DATA.filter(p=>!kw||normalizeName(p.name).includes(kw)).forEach(p=>{const op=document.createElement("option");op.value=p.name;op.textContent=`${p.name}　S${p.speed}`;$("myPokemon").appendChild(op);});if([...$("myPokemon").options].some(o=>o.value===now))$("myPokemon").value=now;updateSelectedPokemon();}
+function fillPokemonSelect(){const kw=searchKey($("mySearch").value);const now=$("myPokemon").value;$("myPokemon").innerHTML="";POKEMON_DATA.filter(p=>!kw||searchKey(p.name).includes(kw)).forEach(p=>{const op=document.createElement("option");op.value=p.name;op.textContent=`${p.name}　S${p.speed}`;$("myPokemon").appendChild(op);});if([...$("myPokemon").options].some(o=>o.value===now))$("myPokemon").value=now;updateSelectedPokemon();}
 function byName(n){return POKEMON_DATA.find(p=>p.name===n)||POKEMON_DATA[0];}
 function updateSelectedPokemon(){const p=byName($("myPokemon").value);if(!p)return;$("baseSpeed").value=p.speed;$("myName").textContent=p.name;$("myBaseText").textContent=p.speed;setMainImage(p.name);render();}
 function render(){
@@ -639,10 +657,10 @@ const enemyFinal=calcSpeed(
 );
 $("enemyFinalSpeed").textContent=enemyFinal;
 
-const kw=normalizeName($("listSearch").value);let w=0,same=0,l=0;const rows=POKEMON_DATA.filter(p=>!kw||normalizeName(p.name).includes(kw)).map(p=>{const es=calcSpeed(p.speed,e.pt,e.nature,e.rank||0,$("enemyOther").value),diff=my-es;let j="抜かれる",c="lose";if(diff>0){j="抜ける";c="win";w++;}else if(diff===0){j="同速";c="same";same++;}else l++;return{...p,enemySpeed:es,diff,j,c};}).sort((a,b)=>b.enemySpeed-a.enemySpeed);$("winCount").textContent=w;$("sameCount").textContent=same;$("loseCount").textContent=l;$("resultList").innerHTML=rows.map(p=>`<div class="row">${imageHtml(p.name)}<div><div class="name">${p.name}</div><div class="sub">種族値S ${p.speed} / 相手S ${p.enemySpeed} / 差 ${p.diff}</div></div><div class="badge ${p.c}">${p.j}</div></div>`).join("");}
-if ($("loadImages")) $("loadImages").addEventListener("click",loadAllImages);
-if ($("clearImages")) $("clearImages").addEventListener("click",clearImages);
-if(Object.keys(normalImageMap).length)if ($("imageStatus")) $("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
+const kw=normalizeName($("listSearch").value);let w=0,same=0,l=0;const rows=POKEMON_DATA.filter(p=>!kw||searchKey(p.name).includes(kw)).map(p=>{const es=calcSpeed(p.speed,e.pt,e.nature,e.rank||0,$("enemyOther").value),diff=my-es;let j="抜かれる",c="lose";if(diff>0){j="抜ける";c="win";w++;}else if(diff===0){j="同速";c="same";same++;}else l++;return{...p,enemySpeed:es,diff,j,c};}).sort((a,b)=>b.enemySpeed-a.enemySpeed);$("winCount").textContent=w;$("sameCount").textContent=same;$("loseCount").textContent=l;$("resultList").innerHTML=rows.map(p=>`<div class="row">${imageHtml(p.name)}<div><div class="name">${p.name}</div><div class="sub">種族値S ${p.speed} / 相手S ${p.enemySpeed} / 差 ${p.diff}</div></div><div class="badge ${p.c}">${p.j}</div></div>`).join("");}
+if ($("loadImages")) if ($("loadImages")) $("loadImages").addEventListener("click",loadAllImages);
+if ($("clearImages")) if ($("clearImages")) $("clearImages").addEventListener("click",clearImages);
+if(Object.keys(normalImageMap).length)if ($("imageStatus")) if ($("imageStatus")) $("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
 fillRank();fillEnemyRank();fillPokemonSelect();fillEnemyPokemonSelect();
 ["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyAbilityPt","enemyNature","enemyRank","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
 
