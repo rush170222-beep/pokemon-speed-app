@@ -32,10 +32,6 @@ const POKEMON_DATA = [
     "speed": 134
   },
   {
-    "name": "メガケケンカニ",
-    "speed": 132
-  },
-  {
     "name": "サンダース",
     "speed": 130
   },
@@ -1002,6 +998,10 @@ const POKEMON_DATA = [
   {
     "name": "ミカルゲ",
     "speed": 35
+  },
+  {
+    "name": "メガケケンカニ",
+    "speed": 33
   },
   {
     "name": "ガラルマッギョ",
