@@ -466,11 +466,10 @@ let normalImageMap=JSON.parse(localStorage.getItem(KEY)||"{}");
 // メガニャオニクス画像修正：画像が存在しない場合は通常ニャオニクス画像へフォールバック
 if (typeof SPECIAL_IMAGE_CANDIDATES !== "undefined") {
   SPECIAL_IMAGE_CANDIDATES["メガニャオニクス"] = [
-    "https://play.pokemonshowdown.com/sprites/xyani/meowstic.gif",
-    "https://play.pokemonshowdown.com/sprites/gen5/meowstic.png",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
-    "https://archives.bulbagarden.net/wiki/Special:FilePath/Menu%20HOME%200678.png"
-  ];
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678-f.png",
+  "https://play.pokemonshowdown.com/sprites/gen5/meowstic-f.png",
+  "https://img.pokemondb.net/sprites/home/normal/2x/meowstic-female.jpg"
+];
 }
 
 
@@ -548,7 +547,7 @@ function setMainImage(name){
 }
 
 async function loadAllImages(){
-  $("imageStatus").textContent="通常画像を取得中...";
+  if ($("imageStatus")) $("imageStatus").textContent="通常画像を取得中...";
   try{
     const list=await fetch("https://pokeapi.co/api/v2/pokemon-species?limit=1200").then(r=>r.json());
     const jaToId={};
@@ -559,7 +558,7 @@ async function loadAllImages(){
         const ja=d.names.find(x=>x.language.name==="ja-Hrkt"||x.language.name==="ja");
         if(ja) jaToId[normalizeName(ja.name)]=d.id;
       }));
-      $("imageStatus").textContent=`通常画像取得中... ${Math.min(i+30,list.results.length)} / ${list.results.length}`;
+      if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得中... ${Math.min(i+30,list.results.length)} / ${list.results.length}`;
     }
     const m={};
     POKEMON_DATA.forEach(p=>{
@@ -570,12 +569,12 @@ async function loadAllImages(){
       if(id) m[n]=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     });
     normalImageMap=m; localStorage.setItem(KEY,JSON.stringify(m));
-    $("imageStatus").textContent=`通常画像取得完了：${Object.keys(m).length}件 / 特殊画像設定済み`;
+    if ($("imageStatus")) $("imageStatus").textContent=`通常画像取得完了：${Object.keys(m).length}件 / 特殊画像設定済み`;
     updateSelectedPokemon(); render();
-  }catch(e){console.error(e);$("imageStatus").textContent="取得失敗";alert("通常画像取得に失敗しました。");}
+  }catch(e){console.error(e);if ($("imageStatus")) $("imageStatus").textContent="取得失敗";alert("通常画像取得に失敗しました。");}
 }
 
-function clearImages(){localStorage.removeItem(KEY);normalImageMap={};$("imageStatus").textContent="通常画像キャッシュ削除済み / 特殊画像は残ります";updateSelectedPokemon();render();}
+function clearImages(){localStorage.removeItem(KEY);normalImageMap={};if ($("imageStatus")) $("imageStatus").textContent="通常画像キャッシュ削除済み / 特殊画像は残ります";updateSelectedPokemon();render();}
 function rankMul(r){r=Number(r);return r>=0?(2+r)/2:2/(2-r);}
 function calcSpeed(b,pt,n,r,o){let s=Math.floor((Number(b)+20+Number(pt))*Number(n));s=Math.floor(s*rankMul(r));return Math.floor(s*Number(o));}
 function enemySetting(){
@@ -641,9 +640,9 @@ const enemyFinal=calcSpeed(
 $("enemyFinalSpeed").textContent=enemyFinal;
 
 const kw=normalizeName($("listSearch").value);let w=0,same=0,l=0;const rows=POKEMON_DATA.filter(p=>!kw||normalizeName(p.name).includes(kw)).map(p=>{const es=calcSpeed(p.speed,e.pt,e.nature,e.rank||0,$("enemyOther").value),diff=my-es;let j="抜かれる",c="lose";if(diff>0){j="抜ける";c="win";w++;}else if(diff===0){j="同速";c="same";same++;}else l++;return{...p,enemySpeed:es,diff,j,c};}).sort((a,b)=>b.enemySpeed-a.enemySpeed);$("winCount").textContent=w;$("sameCount").textContent=same;$("loseCount").textContent=l;$("resultList").innerHTML=rows.map(p=>`<div class="row">${imageHtml(p.name)}<div><div class="name">${p.name}</div><div class="sub">種族値S ${p.speed} / 相手S ${p.enemySpeed} / 差 ${p.diff}</div></div><div class="badge ${p.c}">${p.j}</div></div>`).join("");}
-$("loadImages").addEventListener("click",loadAllImages);
-$("clearImages").addEventListener("click",clearImages);
-if(Object.keys(normalImageMap).length)$("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
+if ($("loadImages")) $("loadImages").addEventListener("click",loadAllImages);
+if ($("clearImages")) $("clearImages").addEventListener("click",clearImages);
+if(Object.keys(normalImageMap).length)if ($("imageStatus")) $("imageStatus").textContent=`通常画像保存済み：${Object.keys(normalImageMap).length}件 / 特殊画像設定済み`;
 fillRank();fillEnemyRank();fillPokemonSelect();fillEnemyPokemonSelect();
 ["mySearch","myPokemon","baseSpeed","abilityPt","nature","rank","other","enemyAbilityPt","enemyNature","enemyRank","enemyOther","listSearch","enemySearch","enemyPokemon"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="mySearch")fillPokemonSelect();else if(id==="enemySearch")fillEnemyPokemonSelect();else if(id==="myPokemon")updateSelectedPokemon();else render();}));
 
@@ -654,5 +653,19 @@ window.addEventListener("load", () => {
     if (!Object.keys(normalImageMap).length) {
       loadAllImages();
     }
+  }
+});
+
+
+// 画像パネルなし版：初回だけ通常画像を自動取得する
+window.addEventListener("load", () => {
+  try {
+    if (typeof loadAllImages === "function" && typeof normalImageMap !== "undefined") {
+      if (!Object.keys(normalImageMap).length) {
+        loadAllImages();
+      }
+    }
+  } catch (e) {
+    console.log("auto image load skipped", e);
   }
 });

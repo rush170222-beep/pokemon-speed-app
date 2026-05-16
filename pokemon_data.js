@@ -1088,3 +1088,5 @@ const POKEMON_DATA = [
     "speed": 20
   }
 ];
+
+["メガケケンカニ",132],
